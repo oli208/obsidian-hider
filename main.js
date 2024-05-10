@@ -48,6 +48,7 @@ class Hider extends obsidian.Plugin {
             document.body.classList.toggle('hider-search-counts', this.settings.hideSearchCounts);
             document.body.classList.toggle('hider-instructions', this.settings.hideInstructions);
             document.body.classList.toggle('hider-meta', this.settings.hidePropertiesReading);
+            document.body.classList.toggle('hider-vault-profile', this.settings.hideVaultprofile);
         };
     }
     onload() {
@@ -113,6 +114,7 @@ const DEFAULT_SETTINGS = {
     hideSearchCounts: false,
     hideInstructions: false,
     hidePropertiesReading: false,
+    hideVaultprofile: false
 };
 class HiderSettingTab extends obsidian.PluginSettingTab {
     constructor(app, plugin) {
@@ -218,6 +220,15 @@ class HiderSettingTab extends obsidian.PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.hidePropertiesReading)
             .onChange((value) => {
             this.plugin.settings.hidePropertiesReading = value;
+            this.plugin.saveData(this.plugin.settings);
+            this.plugin.refresh();
+        }));
+        new obsidian.Setting(containerEl)
+        .setName('Hide vault profile')
+        .setDesc('Hides the vault profile in the left sidedock')
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.hideVaultprofile)
+            .onChange((value) => {
+            this.plugin.settings.hideVaultprofile = value;
             this.plugin.saveData(this.plugin.settings);
             this.plugin.refresh();
         }));

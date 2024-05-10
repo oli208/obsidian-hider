@@ -70,3 +70,8 @@
 .hider-file-nav-header .workspace-leaf-content[data-type=file-explorer] .nav-header {
   display: none;
 }
+
+/* Hide vault profile */
+.hider-vault-profile .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+	display: none !important;
+}

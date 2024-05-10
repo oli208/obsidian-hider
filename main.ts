@@ -72,7 +72,7 @@ export default class Hider extends Plugin {
     document.body.classList.toggle('hider-search-counts', this.settings.hideSearchCounts);
     document.body.classList.toggle('hider-instructions', this.settings.hideInstructions);
     document.body.classList.toggle('hider-meta', this.settings.hidePropertiesReading);
-    document.body.classList.toggle('hider-vault', this.settings.hideVault);
+    document.body.classList.toggle('hider-vault-profile', this.settings.hideVaultprofile);
   }
 
 }
@@ -89,6 +89,7 @@ interface HiderSettings {
   hideSearchCounts: boolean;
   hideInstructions: boolean;
   hidePropertiesReading: boolean;
+  hideVaultprofile: boolean;
 }
 const DEFAULT_SETTINGS: HiderSettings = {
   hideRibbon: false,
@@ -102,6 +103,7 @@ const DEFAULT_SETTINGS: HiderSettings = {
   hideSearchCounts: false,
   hideInstructions: false,
   hidePropertiesReading: false,
+  hideVaultprofile: false
 }
 
 class HiderSettingTab extends PluginSettingTab {
@@ -238,6 +240,15 @@ class HiderSettingTab extends PluginSettingTab {
             this.plugin.refresh();
             })
           );
-
+    new Setting(containerEl)
+      .setName('Hide vault profile')
+      .setDesc('Hides the vault profile in the left sidedock')
+      .addToggle(toggle => toggle.setValue(this.plugin.settings.hideVaultprofile)
+          .onChange((value) => {
+            this.plugin.settings.hideVaultprofile = value;
+            this.plugin.saveData(this.plugin.settings);
+            this.plugin.refresh();
+            })
+          );
   }
 }
