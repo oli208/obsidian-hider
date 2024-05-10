@@ -48,7 +48,6 @@ class Hider extends obsidian.Plugin {
             document.body.classList.toggle('hider-search-counts', this.settings.hideSearchCounts);
             document.body.classList.toggle('hider-instructions', this.settings.hideInstructions);
             document.body.classList.toggle('hider-meta', this.settings.hidePropertiesReading);
-            document.body.classList.toggle('hider-vault', this.settings.hideVault);
         };
     }
     onload() {
@@ -114,7 +113,6 @@ const DEFAULT_SETTINGS = {
     hideSearchCounts: false,
     hideInstructions: false,
     hidePropertiesReading: false,
-    hideVault: false
 };
 class HiderSettingTab extends obsidian.PluginSettingTab {
     constructor(app, plugin) {
@@ -148,15 +146,6 @@ class HiderSettingTab extends obsidian.PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.hideStatus)
             .onChange((value) => {
             this.plugin.settings.hideStatus = value;
-            this.plugin.saveData(this.plugin.settings);
-            this.plugin.refresh();
-        }));
-        new obsidian.Setting(containerEl)
-            .setName('Hide vault name')
-            .setDesc('Hides the root folder name')
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.hideVault)
-            .onChange((value) => {
-            this.plugin.settings.hideVault = value;
             this.plugin.saveData(this.plugin.settings);
             this.plugin.refresh();
         }));

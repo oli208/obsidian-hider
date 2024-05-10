@@ -89,7 +89,6 @@ interface HiderSettings {
   hideSearchCounts: boolean;
   hideInstructions: boolean;
   hidePropertiesReading: boolean;
-  hideVault: boolean;
 }
 const DEFAULT_SETTINGS: HiderSettings = {
   hideRibbon: false,
@@ -103,7 +102,6 @@ const DEFAULT_SETTINGS: HiderSettings = {
   hideSearchCounts: false,
   hideInstructions: false,
   hidePropertiesReading: false,
-  hideVault: false
 }
 
 class HiderSettingTab extends PluginSettingTab {
@@ -148,17 +146,6 @@ class HiderSettingTab extends PluginSettingTab {
       .addToggle(toggle => toggle.setValue(this.plugin.settings.hideStatus)
           .onChange((value) => {
             this.plugin.settings.hideStatus = value;
-            this.plugin.saveData(this.plugin.settings);
-            this.plugin.refresh();
-            })
-          );
-
-    new Setting(containerEl)
-      .setName('Hide vault name')
-      .setDesc('Hides the root folder name')
-      .addToggle(toggle => toggle.setValue(this.plugin.settings.hideVault)
-          .onChange((value) => {
-            this.plugin.settings.hideVault = value;
             this.plugin.saveData(this.plugin.settings);
             this.plugin.refresh();
             })

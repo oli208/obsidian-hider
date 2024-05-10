@@ -1,8 +1,3 @@
-/* Hides vault name */
-.hider-vault .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
-  display:none;
-}
-
 /* Hide tabs */
 .hider-tabs .mod-root .workspace-tabs .workspace-tab-header-container {
   display: none;
